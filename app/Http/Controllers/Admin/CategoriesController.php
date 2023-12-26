@@ -51,14 +51,13 @@ class CategoriesController extends Controller
     public function update(UpdateRequest $request,$category_id)
     {
         $validatedData = $request->validated();
-        $category = Category::find($category_id);
 
-        $updatedCategory = $category->update([
-            'title' => $validatedData['title'],
-            'slug' => $validatedData['slug'],
-        ]);
+        $category = Category::find($category_id)->update([
+                'title' => $validatedData['title'],
+                'slug' => $validatedData['slug'],
+            ]);
 
-        if(!$updatedCategory)
+        if(!$category)
             return back()->with('failed','Category does not updated');
 
         return back()->with('success','Category updated');
