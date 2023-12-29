@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Response;
 use Illuminate\Routing\Events\ResponsePrepared;
 use App\Http\Requests\Admin\Products\StoreRequest;
 use App\Http\Requests\Admin\Products\UpdateRequest;
+use App\Utilities\FileRemover;
 
 class ProductsController extends Controller
 {
@@ -81,6 +82,7 @@ class ProductsController extends Controller
             'description' => $validatedData['description'],
         ]);
 
+        $this->removeOldImages($product,$validatedData);
         return $this->uploadImages($product, $validatedData);
     }
 
@@ -160,6 +162,8 @@ class ProductsController extends Controller
 
             $updatedProduct = $createdProduct->update($data);
 
+            if($updatedProduct)
+
             if (!$updatedProduct)
                 throw new \Exception();
 
@@ -170,6 +174,27 @@ class ProductsController extends Controller
             // return DB::rollBack();
             dd($e);
             return back()->with('failed', $e->getMessage());
+        }
+    }
+
+    private function removeOldImages($product,$validatedData)
+    {
+        if(isset($validatedData['source_url']))
+        {
+            $sourcePath = $product->source_url;
+            FileRemover::remove($sourcePath,'local_storage');
+        }
+
+        if(isset($validatedData['thumbnail_url']))
+        {
+            $thumbnailPath = $product->thumbnail_url;
+            FileRemover::remove($thumbnailPath,'public_storage');
+        }
+
+        if(isset($validatedData['demo_url']))
+        {
+            $demoPath = $product->demo_url;
+            FileRemover::remove($demoPath,'public_storage');
         }
     }
 }
