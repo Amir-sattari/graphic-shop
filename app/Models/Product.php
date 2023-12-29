@@ -10,4 +10,14 @@ class Product extends Model
     use HasFactory;
 
     public $guarded = [];
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
+
+    public function owner()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
