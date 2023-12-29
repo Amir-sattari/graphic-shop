@@ -47,7 +47,12 @@ class ProductsController extends Controller
             'owner_id' => $admin->id,
         ]);
 
-        return $this->uploadImages($createdProduct,$validatedData);
+        $result = $this->uploadImages($createdProduct,$validatedData);
+
+        if($result)
+            return back()->with('success', 'Product created');
+        else
+            return back()->with('failed', 'Product does not created');
     }
 
     public function delete($product_id)
@@ -83,7 +88,14 @@ class ProductsController extends Controller
         ]);
 
         $this->removeOldImages($product,$validatedData);
-        return $this->uploadImages($product, $validatedData);
+        $result = $this->uploadImages($product, $validatedData);
+
+        if($result)
+            return back()->with('success', 'Product updated');
+        else
+            return back()->with('failed', 'Product does not updated');
+
+
     }
 
     # First way
@@ -162,18 +174,16 @@ class ProductsController extends Controller
 
             $updatedProduct = $createdProduct->update($data);
 
-            if($updatedProduct)
-
             if (!$updatedProduct)
                 throw new \Exception();
 
-            return back()->with('success', 'Product created');
+            if($updatedProduct)
+                return true;
             // DB::commit();
 
         } catch (\Exception $e) {
             // return DB::rollBack();
-            dd($e);
-            return back()->with('failed', $e->getMessage());
+            return false;
         }
     }
 
