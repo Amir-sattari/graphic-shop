@@ -23,6 +23,7 @@
     <!-- Main content -->
     <div class="content">
       <div class="container-fluid">
+      @include('errors.message')
           <div class="row">
               <div class="col-12">
                   <div class="card">
@@ -65,7 +66,7 @@
                                       <form action="{{ route('admin.users.delete',$user->id) }}" method="POST" style="display: inline">
                                         @csrf
                                         @method('delete')
-                                        <button type="submit" class="btn btn-default btn-icons"><i class="fa fa-trash"></i></button>
+                                        <button type="submit" class="btn btn-default btn-icons" onclick="return confirm('Are you sure to delete this user?\n{{ $user->name }}')"><i class="fa fa-trash"></i></button>
                                       </form>
                                   </td>
                                 </tr>

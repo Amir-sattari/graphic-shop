@@ -50,9 +50,9 @@ class ProductsController extends Controller
         $result = $this->uploadImages($createdProduct,$validatedData);
 
         if($result)
-            return back()->with('success', 'Product created');
+            return back()->with('success', 'محصول اضافه شد');
         else
-            return back()->with('failed', 'Product does not created');
+            return back()->with('failed', 'محصول اضافه نشد');
     }
 
     public function delete($product_id)
@@ -64,7 +64,7 @@ class ProductsController extends Controller
             File::deleteDirectory(storage_path('app/local_storage/products/' . $product_id));
         }
 
-        return back()->with('success', 'Product Deleted');
+        return back()->with('success', 'محصول حذف شد');
     }
 
     public function edit($product_id)
@@ -91,9 +91,9 @@ class ProductsController extends Controller
         $result = $this->uploadImages($product, $validatedData);
 
         if($result)
-            return back()->with('success', 'Product updated');
+            return back()->with('success', 'محصول بروزرسانی شد');
         else
-            return back()->with('failed', 'Product does not updated');
+            return back()->with('failed', 'محصول بروزرسانی نشد');
 
 
     }

@@ -25,9 +25,9 @@ class CategoriesController extends Controller
         ]);
 
         if(!$createdCategory)
-            return back()->with('failed','Category does not created');
+            return back()->with('failed','دسته بندی اضافه نشد');
 
-        return back()->with('success','Category created');
+        return back()->with('success','دسته بندی اضافه شد');
     }
 
     public function all()
@@ -38,8 +38,8 @@ class CategoriesController extends Controller
 
     public function delete($category_id)
     {
-        $category = Category::find($category_id)->delete();
-        return back()->with('success','Category deleted');
+        Category::find($category_id)->delete();
+        return back()->with('success','دسته بندی حذف شد');
     }
 
     public function edit($category_id)
@@ -58,8 +58,8 @@ class CategoriesController extends Controller
             ]);
 
         if(!$category)
-            return back()->with('failed','Category does not updated');
+            return back()->with('failed','دسته بندی بروزرسانی نشد');
 
-        return back()->with('success','Category updated');
+        return back()->with('success','دسته بندی بروزرسانی شد');
     }
 }
