@@ -37,7 +37,7 @@ class ProductsController extends Controller
     {
         $validatedData = $request->validated();
 
-        $admin = User::where('email', 'admin@gmail.com')->first();
+        $admin = User::where('id', 4)->first();
 
         $createdProduct = Product::create([
             'title' => $validatedData['title'],
