@@ -71,7 +71,7 @@
                                   <td>
                                       <a href="{{ route('admin.products.download.source', $product->id) }}" class="btn btn-default btn-icons" title="لینک دانلود"><i class="fa fa-link"></i></a>
                                   </td>
-                                  <td>{{ $product->price }} تومان</td>
+                                  <td>{{ $product->price }} هزار تومان</td>
                                   <td>{{ $product->created_at }}</td>
                                   <td>
                                       <a href="{{ route('admin.products.edit', $product->id) }}" class="btn btn-default btn-icons"><i class="fa fa-edit"></i></a>

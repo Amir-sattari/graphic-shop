@@ -14,23 +14,7 @@
                     {{ $category->title }}
                 </button>
                 @endforeach
-                
 
-                {{-- <button class="mtext-106 cl6 hov1 bor3 trans-04 m-l-32 m-tb-5" data-filter=".men">
-                    کارت ویزیت
-                </button>
-
-                <button class="mtext-106 cl6 hov1 bor3 trans-04 m-l-32 m-tb-5" data-filter=".bag">
-                    بنر
-                </button>
-
-                <button class="mtext-106 cl6 hov1 bor3 trans-04 m-l-32 m-tb-5" data-filter=".shoes">
-                    ست اداری
-                </button>
-
-                <button class="mtext-106 cl6 hov1 bor3 trans-04 m-l-32 m-tb-5" data-filter=".watches">
-                    وکتور
-                </button> --}}
             </div>
 
             <div class="flex-w flex-c-m m-tb-10">
@@ -49,13 +33,15 @@
 
             <!-- Search product -->
             <div class="dis-none panel-search w-full p-t-10 p-b-15">
-                <div class="bor8 dis-flex p-l-15">
-                    <button class="size-113 flex-c-m fs-16 cl2 hov-cl1 trans-04">
-                        <i class="zmdi zmdi-search"></i>
-                    </button>
+                <form action="{{ route('home.products.all') }}">
+                    <div class="bor8 dis-flex p-l-15">
+                        <button class="size-113 flex-c-m fs-16 cl2 hov-cl1 trans-04">
+                            <i class="zmdi zmdi-search"></i>
+                        </button>
 
-                    <input class="mtext-107 cl2 size-114 plh2 p-r-15" type="text" name="search-product" placeholder="متن خود را اینجا بنویسید و enter بزنید ...">
-                </div>
+                        <input class="mtext-107 cl2 size-114 plh2 p-r-15" type="text" name="search-product" placeholder="متن خود را اینجا بنویسید و enter بزنید ...">
+                    </div>
+                </form>
             </div>
 
             <!-- Filter -->
@@ -89,25 +75,25 @@
 
                         <ul>
                             <li class="p-b-6">
-                                <a href="#" class="filter-link stext-106 trans-04 filter-link-active">
+                                <a href="{{ route('home.products.all') }}" class="filter-link stext-106 trans-04 filter-link-active">
                                     همه
                                 </a>
                             </li>
 
                             <li class="p-b-6">
-                                <a href="#" class="filter-link stext-106 trans-04">
+                                <a href="?filter=price&action=filterProductByPrice&value=10to100" class="filter-link stext-106 trans-04">
                                     ۱۰ الی ۱۰۰ هزار تومان
                                 </a>
                             </li>
 
                             <li class="p-b-6">
-                                <a href="#" class="filter-link stext-106 trans-04">
+                                <a href="?filter=price&action=filterProductByPrice&value=101to200" class="filter-link stext-106 trans-04">
                                     ۱۰۱ الی ۲۰۰ هزار تومان
                                 </a>
                             </li>
 
                             <li class="p-b-6">
-                                <a href="#" class="filter-link stext-106 trans-04">
+                                <a href="?filter=price&action=filterProductByPrice&value=201to300" class="filter-link stext-106 trans-04">
                                     ۲۰۱ الی ۳۰۰ هزار تومان
                                 </a>
                             </li>
@@ -121,31 +107,31 @@
 
                         <ul>
                             <li class="p-b-6">
-                                <a href="#" class="filter-link stext-106 trans-04">
+                                <a href="?filter=orderby&action=default" class="filter-link stext-106 trans-04">
                                     پیش فرض
                                 </a>
                             </li>
 
                             <li class="p-b-6">
-                                <a href="#" class="filter-link stext-106 trans-04">
+                                <a href="?filter=orderby&action=mostPopular" class="filter-link stext-106 trans-04">
                                     محبوبیت
                                 </a>
                             </li>
 
                             <li class="p-b-6">
-                                <a href="#" class="filter-link stext-106 trans-04 filter-link-active">
+                                <a href="?filter=orderby&action=newest" class="filter-link stext-106 trans-04 filter-link-active">
                                     جدیدترین
                                 </a>
                             </li>
 
                             <li class="p-b-6">
-                                <a href="#" class="filter-link stext-106 trans-04">
+                                <a href="?filter=orderby&action=lowToHigh" class="filter-link stext-106 trans-04">
                                     قیمت:‌ کم به زیاد
                                 </a>
                             </li>
 
                             <li class="p-b-6">
-                                <a href="#" class="filter-link stext-106 trans-04">
+                                <a href="?filter=orderby&action=highToLow" class="filter-link stext-106 trans-04">
                                     قیمت:‌زیاد به کم
                                 </a>
                             </li>
@@ -172,7 +158,7 @@
                     <div class="block2-txt flex-w flex-t p-t-14">
                         <div class="block2-txt-child1 flex-col-l ">
                             <a href="{{ route('home.products.show', $product->id )}}" class="mtext-106 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-                                  {{ $product->title }}
+                                {{ $product->title }}
                             </a>
 
                             <span class="stext-105 cl3">
