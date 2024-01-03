@@ -31,4 +31,8 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'gateways' => [
+        'id-pay' => 'e2c63665-8002-4d41-8917-0fc9e3a514b7',
+    ],
+
 ];

@@ -10,6 +10,9 @@ use App\Http\Controllers\Home\BasketController;
 use App\Http\Controllers\Home\CheckoutController;
 use App\Http\Controllers\Home\HomeController;
 use App\Http\Controllers\Home\ProductsController as HomeProductsController;
+use App\Http\Controllers\PaymentController;
+
+Route::get('pay',[PaymentController::class,'pay']);
 
 Route::prefix('')->group(function(){
 
