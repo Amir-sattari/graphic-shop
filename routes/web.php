@@ -12,7 +12,6 @@ use App\Http\Controllers\Home\HomeController;
 use App\Http\Controllers\Home\ProductsController as HomeProductsController;
 use App\Http\Controllers\PaymentController;
 
-Route::get('pay',[PaymentController::class,'pay']);
 
 Route::prefix('')->group(function(){
 
@@ -66,4 +65,10 @@ Route::prefix('admin')->group(function(){
 
         Route::get('',[PaymentsController::class,'all'])->name('admin.payments.all');
     });
+});
+
+Route::prefix('payment')->group(function(){
+
+    Route::post('pay',[PaymentController::class, 'pay'])->name('payment.pay');
+    Route::post('callback',[PaymentController::class,'callback'])->name('payment.callback');
 });
