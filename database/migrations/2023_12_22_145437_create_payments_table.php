@@ -18,8 +18,9 @@ return new class extends Migration
             $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
 
             $table->enum('gateway',['idpay','zarinpal']);
-            $table->unsignedInteger('res_id');
-            $table->unsignedInteger('ref_id');
+            $table->char('res_id')->nullable();
+            // $table->unsignedInteger('ref_id');
+            $table->char('ref_code')->nullable();
             $table->enum('status',['paid','unpaid']);
             $table->timestamps();
         });
